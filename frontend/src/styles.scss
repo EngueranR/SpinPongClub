@@ -1,1 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    background-image: url('assets/images/background.jpg');
+    filter: blur(10px);
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-size: 100vw 100vh; /* Utilisation de vw et vh */
+  }
