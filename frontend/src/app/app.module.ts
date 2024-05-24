@@ -3,24 +3,18 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {HomePage} from "./pages/home/home.page";
-import { HomeButtonComponent } from './components/home-button/home-button.component';
-import {CardModule} from "primeng/card";
-import { ButtonModule} from "primeng/button";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { TileComponent } from './tile/tile.component';
+import { GridTileComponent } from './grid-tile/grid-tile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomePage,
-    HomeButtonComponent
+    TileComponent,
+    GridTileComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    CardModule,
-    ButtonModule,
-    BrowserAnimationsModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
