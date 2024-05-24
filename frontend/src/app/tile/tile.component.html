@@ -1,0 +1,20 @@
+<div class="tile-container">
+  <div
+    class="tile"
+    [ngStyle]="{
+      'background-color': color,
+      'width.px': width,
+      'height.px': height,
+      'box-shadow': '0px 0px 75px ' + shadowColor
+    }"
+  >
+    <p
+      [ngStyle]="{
+        color: textColor,
+        'font-size': textSize,
+      }"
+    >
+      {{ text }}
+    </p>
+  </div>
+</div>
