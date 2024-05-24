@@ -1,6 +1,7 @@
-<div class="tile-container">
+<div class="tile-container" *ngIf="!disabled">
   <div
     class="tile"
+    (click)="onTileClick()"
     [ngStyle]="{
       'background-color': color,
       'width.px': width,
@@ -12,6 +13,7 @@
       [ngStyle]="{
         color: textColor,
         'font-size': textSize,
+        'user-select': 'none'
       }"
     >
       {{ text }}
