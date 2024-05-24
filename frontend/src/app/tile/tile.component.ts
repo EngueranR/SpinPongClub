@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-tile',
@@ -13,11 +13,4 @@ export class TileComponent {
   @Input() textColor?: string = 'white';
   @Input() textSize?: string = 1.5 + 'em';
   @Input() shadowColor?: string = 'white';
-  @Input() disabled?: boolean = false;
-
-  @Output() tileClick = new EventEmitter<void>();
-
-  onTileClick() {
-    this.tileClick.emit();
-  }
 }
