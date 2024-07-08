@@ -8,19 +8,25 @@ import { HomeButtonComponent } from './components/home-button/home-button.compon
 import {CardModule} from "primeng/card";
 import { ButtonModule} from "primeng/button";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { MenuComponent } from './components/menu/menu.component';
+import {MenubarModule} from "primeng/menubar";
+import {Ripple} from "primeng/ripple";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePage,
-    HomeButtonComponent
+    HomeButtonComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CardModule,
     ButtonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MenubarModule,
+    Ripple
   ],
   providers: [],
   bootstrap: [AppComponent]
