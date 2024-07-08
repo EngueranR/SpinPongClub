@@ -15,14 +15,18 @@ export const authMiddleware = (
   const token = req.header("Authorization")?.replace("Bearer ", "");
 
   if (!token) {
-    return res.status(401).json({ message: "No token, authorization denied" });
+    return res
+      .status(401)
+      .json({ message: "Pas de token, autorisation refusée" });
   }
 
   try {
-    const decoded = jwt.verify(token, secretKey) as { userId: string };
-    req.userId = decoded.userId;
+    const decoded = jwt.verify(token, secretKey) as { id: string };
+    console.log("Decoded token:", decoded); // Ajout de la journalisation pour vérifier le token décodé
+    req.userId = decoded.id;
+    console.log(req.userId);
     next();
   } catch (err) {
-    res.status(401).json({ message: "Token is not valid" });
+    res.status(401).json({ message: "Token non valide" });
   }
 };

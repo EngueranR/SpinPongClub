@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { IUser, User } from "../models/user";
 
-const secretKey = process.env.JWT_SECRET || "defaultSecret";
+const secretKey = "SpingSpong";
 
 export const register = async (req: Request, res: Response) => {
   const { username, email, password } = req.body;
