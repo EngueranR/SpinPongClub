@@ -1,3 +1,4 @@
+// authRoutes.ts
 import express, { Request, Response } from "express";
 import User from "../models/user";
 import bcrypt from "bcryptjs";
@@ -16,10 +17,16 @@ router.post("/register", async (req: Request, res: Response) => {
       return res.status(400).json({ message: "User already exists" });
     }
 
+    console.log("Original password:", password); // Log original password
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    console.log("Hashed password:", hashedPassword); // Log hashed password
+
     const user = new User({
       username,
       email,
-      password,
+      password: hashedPassword,
     });
 
     await user.save();
@@ -46,17 +53,27 @@ router.post("/login", async (req: Request, res: Response) => {
   try {
     const user = await User.findOne({ email });
 
-    if (user && (await user.matchPassword(password))) {
-      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET!, {
-        expiresIn: "30d",
-      });
+    if (user) {
+      console.log("Password to compare:", password); // Log entered password
+      console.log("Stored hashed password:", user.password); // Log stored hashed password
 
-      res.json({
-        _id: user._id,
-        username: user.username,
-        email: user.email,
-        token,
-      });
+      const isMatch = await bcrypt.compare(password, user.password);
+      console.log("Password match result:", isMatch); // Log match result
+
+      if (isMatch) {
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET!, {
+          expiresIn: "30d",
+        });
+
+        res.json({
+          _id: user._id,
+          username: user.username,
+          email: user.email,
+          token,
+        });
+      } else {
+        res.status(401).json({ message: "Invalid email or password" });
+      }
     } else {
       res.status(401).json({ message: "Invalid email or password" });
     }
