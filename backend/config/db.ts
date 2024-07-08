@@ -1,15 +1,21 @@
 import mongoose, { ConnectOptions } from "mongoose";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const connectDB = async () => {
   try {
     await mongoose.connect("mongodb://localhost:27017/spingpong", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      useCreateIndex: true,
     } as ConnectOptions);
     console.log("MongoDB connected...");
   } catch (err) {
-    console.error(err.message);
+    if (err instanceof Error) {
+      console.error(err.message);
+    } else {
+      console.error("An unknown error occurred");
+    }
     process.exit(1);
   }
 };
