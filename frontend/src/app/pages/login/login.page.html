@@ -1,0 +1,26 @@
+<div class="login-container">
+  <h2>Login</h2>
+  <form (ngSubmit)="login()">
+    <div class="p-field">
+      <label for="email">Email</label>
+      <input
+        id="email"
+        type="text"
+        pInputText
+        [(ngModel)]="email"
+        name="email"
+      />
+    </div>
+    <div class="p-field">
+      <label for="password">Password</label>
+      <input
+        id="password"
+        type="password"
+        pInputText
+        [(ngModel)]="password"
+        name="password"
+      />
+    </div>
+    <button type="submit" pButton label="Login"></button>
+  </form>
+</div>

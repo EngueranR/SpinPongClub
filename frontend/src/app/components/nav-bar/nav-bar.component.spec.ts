@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TileComponent } from './tile.component';
+import { NavBarComponent } from './nav-bar.component';
 
-describe('TileComponent', () => {
-  let component: TileComponent;
-  let fixture: ComponentFixture<TileComponent>;
+describe('NavBarComponent', () => {
+  let component: NavBarComponent;
+  let fixture: ComponentFixture<NavBarComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TileComponent]
+      declarations: [NavBarComponent]
     });
-    fixture = TestBed.createComponent(TileComponent);
+    fixture = TestBed.createComponent(NavBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
