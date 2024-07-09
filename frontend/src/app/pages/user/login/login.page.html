@@ -1,0 +1,43 @@
+
+<div class="p-grid p-justify-center" *ngIf="mode === 'login'">
+  <div class="p-col-12 p-md-6">
+    <h2>Connexion</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <div class="p-field">
+        <label for="login-username">Nom d'utilisateur</label>
+        <input id="login-username" formControlName="username" pInputText>
+      </div>
+      <div class="p-field">
+        <label for="login-password">Mot de passe</label>
+        <input id="login-password" formControlName="password" type="password" pInputText>
+      </div>
+      <button type="submit" pButton label="Se connecter" [disabled]="!loginForm.valid"></button>
+    </form>
+  </div>
+</div>
+
+<div class="p-grid p-justify-center" style="margin-top: 2rem;" *ngIf="mode === 'signup'">
+  <div class="p-col-12 p-md-6">
+    <h2>Inscription</h2>
+    <form [formGroup]="signupForm" (ngSubmit)="onSignup()">
+      <div class="p-field">
+        <label for="signup-username">Nom d'utilisateur</label>
+        <input id="signup-username" formControlName="username" pInputText>
+      </div>
+      <div class="p-field">
+        <label for="signup-email">Email</label>
+        <input id="signup-email" formControlName="email" type="email" pInputText>
+      </div>
+      <div class="p-field">
+        <label for="signup-password">Mot de passe</label>
+        <input id="signup-password" formControlName="password" type="password" pInputText>
+      </div>
+      <button type="submit" pButton label="S'inscrire" [disabled]="!signupForm.valid"></button>
+    </form>
+  </div>
+</div>
+
+<p-button (onClick)="changeMode()"  [link]="true">
+  <span *ngIf="mode === 'login'">Je n'ai pas de compte : s'inscrire</span>
+  <span *ngIf="mode === 'signup'">J'ai déjà un compte : se connecter</span>
+</p-button>

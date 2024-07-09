@@ -1,0 +1,9 @@
+<p>Bienvenue sur la page d'adminstration</p>
+
+<div>
+  <p-tabView>
+    <p-tabPanel *ngFor="let tab of tabs" [header]="tab.title">
+      <ng-container *ngComponentOutlet="tab.content"></ng-container>
+    </p-tabPanel>
+  </p-tabView>
+</div>
