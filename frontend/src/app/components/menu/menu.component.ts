@@ -16,6 +16,11 @@ export class MenuComponent implements OnInit {
         icon: 'pi pi-user',
         to: '/login'
       },
+      {
+        label:'Administration',
+        icon: 'pi pi-cog',
+        to: '/admin'
+      },
     ]
   }
 
