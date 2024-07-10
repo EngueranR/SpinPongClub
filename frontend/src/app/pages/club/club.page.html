@@ -1,1 +1,12 @@
-<p>club works!</p>
+<div *ngFor="let n of news;" class="m-3">
+  <p-card [header]="n.title">
+    <div>
+      {{n.content}}
+    </div>
+    <ng-template pTemplate="footer">
+      <div class="flex justify-content-end">
+      Créé le {{ n.createdAt | date:'dd/MM/yyyy' }}
+      </div>
+    </ng-template>
+  </p-card>
+</div>

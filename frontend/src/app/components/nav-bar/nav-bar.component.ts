@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { MenuItem, ConfirmationService } from 'primeng/api';
 import { Router } from '@angular/router';
@@ -6,6 +7,11 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
+})
+export class NavBarComponent implements OnInit {
+  items: MenuItem[] | undefined;
+
+  ngOnInit() {
   styleUrls: ['./nav-bar.component.scss'],
   providers: [ConfirmationService],
 })
@@ -56,6 +62,13 @@ export class NavBarComponent implements OnInit {
         icon: 'pi pi-fw pi-envelope',
         routerLink: '/contact',
       },
+      {
+        label: 'Login',
+        icon: 'pi pi-fw pi-user',
+        routerLink: '/login',
+        styleClass: 'login-item',
+      },
+    ];
     ];
 
     if (this.isLoggedIn) {
