@@ -1,43 +1,60 @@
 <div class="login-container">
-  <h2>Login</h2>
-  <form (ngSubmit)="login()">
-    <div class="p-fluid">
-      <div class="p-field">
-        <label for="email">Email</label>
-        <span class="p-input-icon-left">
-          <i class="pi pi-envelope"></i>
-          <input
-            id="email"
-            type="text"
-            pInputText
-            [(ngModel)]="email"
-            name="email"
-          />
-        </span>
+  <h2>S'inscrire</h2>
+  <form (ngSubmit)="login()" #loginForm="ngForm" class="p-fluid">
+    <div class="p-field">
+      <label for="email">Email</label>
+      <span class="p-input-icon-left">
+        <i class="pi pi-envelope"></i>
+        <input
+          id="email"
+          type="text"
+          pInputText
+          [(ngModel)]="email"
+          name="email"
+          class="button-small-width"
+          #emailInput="ngModel"
+          required
+          [class.error]="emailInput.invalid && emailInput.touched"
+        />
+      </span>
+    </div>
+    <div class="p-field">
+      <label for="password">Password</label>
+      <span class="p-input-icon-left">
+        <i class="pi pi-lock"></i>
+        <input
+          id="password"
+          type="password"
+          pInputText
+          [(ngModel)]="password"
+          name="password"
+          class="button-small-width"
+          #passwordInput="ngModel"
+          required
+          [class.error]="passwordInput.invalid && passwordInput.touched"
+        />
+      </span>
+    </div>
+    <div class="p-field">
+      <div [class.error-space]="!loginError" [class.error-message]="loginError">
+        {{ loginError }}
       </div>
-      <div class="p-field">
-        <label for="password">Password</label>
-        <span class="p-input-icon-left">
-          <i class="pi pi-lock"></i>
-          <input
-            id="password"
-            type="password"
-            pInputText
-            [(ngModel)]="password"
-            name="password"
-          />
-        </span>
-      </div>
+
+      <button
+        pButton
+        type="button"
+        label="Pas encore inscrit ?"
+        class="p-button-text p-mr-2 button-small-width"
+        routerLink="/register"
+      ></button>
       <button
         type="submit"
         pButton
         label="Login"
         icon="pi pi-sign-in"
-        class="p-button-success"
+        class="p-button p-button-success p-button-sm p-mt-2 button-small-width"
+        [disabled]="loginForm.invalid"
       ></button>
     </div>
   </form>
-  <div *ngIf="loginError" class="p-field">
-    <p class="p-error">{{ loginError }}</p>
-  </div>
 </div>

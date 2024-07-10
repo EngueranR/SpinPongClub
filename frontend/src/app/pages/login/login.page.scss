@@ -1,0 +1,14 @@
+.button-small-width {
+  width: 50%;
+  display: block;
+}
+
+.error-space {
+  min-height: 20px;
+  visibility: hidden;
+}
+
+.error-message {
+  color: red;
+  visibility: visible;
+}

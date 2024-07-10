@@ -5,10 +5,10 @@ dotenv.config();
 
 const connectDB = async () => {
   try {
-    await mongoose.connect("mongodb://localhost:27017/spingpong", {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    } as ConnectOptions);
+    await mongoose.connect(
+      "mongodb://localhost:27017/spingpong",
+      {} as ConnectOptions
+    );
     console.log("MongoDB connected...");
   } catch (err) {
     if (err instanceof Error) {

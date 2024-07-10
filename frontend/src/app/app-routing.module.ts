@@ -9,6 +9,7 @@ import { ContactPage } from './pages/contact/contact.page';
 import {TournamentPage} from "./pages/tournament/tournament.page";
 import {AdministrationPage} from "./pages/administration/administration.page";
 
+
 const routes: Routes = [
   { path: '', component: HomePage },
   { path: 'login', component: LoginPage },

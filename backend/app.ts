@@ -6,10 +6,12 @@ import userRoutes from "./routes/userRoutes";
 import contactRoutes from "./routes/contactRoutes";
 import newsRoutes from "./routes/newsRoutes";
 import tournamentsRoutes from "./routes/tournamentsRoutes";
+import cors from "cors";
 
 const app = express();
 
-// Connect to database
+app.use(cors());
+
 connectDB();
 
 // Middleware

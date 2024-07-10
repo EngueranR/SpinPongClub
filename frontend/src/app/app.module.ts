@@ -1,6 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomePage } from './pages/home/home.page';
@@ -12,6 +11,7 @@ import { LoginPage } from './pages/login/login.page';
 import { MenubarModule } from 'primeng/menubar';
 import { RegisterPage } from './pages/register/register.page';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { TournoiPage } from './pages/tournoi/tournoi.page';
 import { EvenementPage } from './pages/evenement/evenement.page';
 import { ClubPage } from './pages/club/club.page';
@@ -30,6 +30,7 @@ import { AdministrationTournamentsComponent } from './components/administration/
 import {TableModule} from "primeng/table";
 import {Ripple} from "primeng/ripple";
 import {CalendarModule} from "primeng/calendar";
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [

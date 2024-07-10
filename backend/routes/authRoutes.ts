@@ -1,10 +1,10 @@
-// authRoutes.ts
 import express, { Request, Response } from "express";
-import User from "../models/user";
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
+import { login, register } from "../controllers/authController";
 
 const router = express.Router();
+
+router.post("/register", register);
+router.post("/login", login);
 
 // Route for registering a new user
 router.post("/register", async (req: Request, res: Response) => {
@@ -42,6 +42,7 @@ router.post("/register", async (req: Request, res: Response) => {
       token,
     });
   } catch (error) {
+    console.error("Error during registration:", error);
     res.status(500).json({ message: "Server error" });
   }
 });
