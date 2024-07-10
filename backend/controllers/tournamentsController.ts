@@ -80,3 +80,31 @@ export const deleteTournament = async (req: Request, res: Response) => {
       .json({ message: "Erreur lors de la suppression du tournoi" });
   }
 };
+
+export const updateTournament = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { name, participants, startDate, maxParticipants, prize } = req.body;
+
+  try {
+    const tournament = await Tournament.findById(id);
+
+    if (!tournament) {
+      return res.status(404).json({ message: "Tournament not found" });
+    }
+
+    tournament.name = name || tournament.name;
+    tournament.participants = participants || tournament.participants;
+    tournament.startDate = startDate || tournament.startDate;
+    tournament.maxParticipants = maxParticipants || tournament.maxParticipants;
+    tournament.prize = prize || tournament.prize;
+
+    await tournament.save();
+
+    res
+      .status(200)
+      .json({ message: "Tournament updated successfully", tournament });
+  } catch (error) {
+    console.error("Error updating tournament:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
