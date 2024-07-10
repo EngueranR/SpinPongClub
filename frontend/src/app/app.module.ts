@@ -17,6 +17,8 @@ import { EvenementPage } from './pages/evenement/evenement.page';
 import { ClubPage } from './pages/club/club.page';
 import { ContactPage } from './pages/contact/contact.page';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import {HttpClientModule} from "@angular/common/http";
+import {InputTextModule} from "primeng/inputtext";
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     ButtonModule,
     FormsModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    InputTextModule
   ],
   providers: [],
   bootstrap: [AppComponent],
