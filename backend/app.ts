@@ -3,8 +3,11 @@ import bodyParser from "body-parser";
 import connectDB from "./config/db";
 import authRoutes from "./routes/authRoutes";
 import userRoutes from "./routes/userRoutes";
+import cors from "cors";
 
 const app = express();
+
+app.use(cors());
 
 // Connect to database
 connectDB();

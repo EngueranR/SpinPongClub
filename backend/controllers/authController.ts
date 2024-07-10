@@ -14,11 +14,11 @@ export const register = async (req: Request, res: Response) => {
       return res.status(400).json({ message: "Email already in use" });
     }
 
-    console.log("Original password:", password); // Log original password
+    console.log("Original password:", password);
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    console.log("Hashed password:", hashedPassword); // Log hashed password
+    console.log("Hashed password:", hashedPassword);
 
     const newUser: IUser = new User({
       username,
