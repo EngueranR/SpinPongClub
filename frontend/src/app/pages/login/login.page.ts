@@ -23,6 +23,7 @@ export class LoginPage {
       (error) => {
         console.error('Login failed', error);
         this.loginError = 'Email ou mot de passe incorrect.';
+        console.log(this.loginError);
       }
     );
   }
