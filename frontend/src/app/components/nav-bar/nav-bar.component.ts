@@ -37,10 +37,10 @@ export class NavBarComponent implements OnInit {
         routerLink: '/contact',
       },
       {
-        label: 'Login/Logout',
+        label: 'Login',
         icon: 'pi pi-fw pi-user',
         routerLink: '/login',
-        styleClass: 'login-logout-item',
+        styleClass: 'login-item',
       },
     ];
   }

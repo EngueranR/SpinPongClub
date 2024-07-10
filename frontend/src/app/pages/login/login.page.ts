@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import {HttpClientModule} from "@angular/common/http";
 
 @Component({
   selector: 'app-login',
@@ -11,6 +10,7 @@ import {HttpClientModule} from "@angular/common/http";
 export class LoginPage {
   email: string = '';
   password: string = '';
+  loginError: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -22,6 +22,7 @@ export class LoginPage {
       },
       (error) => {
         console.error('Login failed', error);
+        this.loginError = 'Email ou mot de passe incorrect.';
       }
     );
   }
