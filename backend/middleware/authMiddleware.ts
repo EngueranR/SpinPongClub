@@ -22,7 +22,7 @@ export const authMiddleware = (
 
   try {
     const decoded = jwt.verify(token, secretKey) as { id: string };
-    console.log("Decoded token:", decoded); // Ajout de la journalisation pour vérifier le token décodé
+    console.log("Decoded token:", decoded);
     req.userId = decoded.id;
     console.log(req.userId);
     next();
