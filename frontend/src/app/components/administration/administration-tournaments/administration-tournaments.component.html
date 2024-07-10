@@ -1,0 +1,22 @@
+Gérer les tournois
+
+<p-table [value]="tournaments">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Id</th>
+        <th>Nom</th>
+        <th>Date</th>
+        <th>Prix</th>
+        <th>Nombre de participants max</th>
+      </tr>
+    </ng-template>
+  <ng-template pTemplate="body" let-tournament>
+    <tr>
+      <td>{{ tournament.id }}</td>
+      <td>{{ tournament.name }}</td>
+      <td>{{ tournament.prize }}</td>
+      <td>{{ tournament.startDate | date:'dd/MM/yyyy' }}</td>
+      <td>{{ tournament.maxParticipants }}</td>
+    </tr>
+  </ng-template>
+</p-table>
