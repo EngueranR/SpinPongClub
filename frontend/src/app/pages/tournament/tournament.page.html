@@ -1,0 +1,19 @@
+<p-card header="Nom du tournoi" subheader="Début : 01/08/2024" class="m-2">
+  <p-divider styleClass="m-0"></p-divider>
+  <div class="flex row">
+    <div class="col">
+      <div class="mt-2">Nombre maximal de participants : </div>
+      <div class="mt-2">Prix</div>
+    </div>
+    <div class="col">
+      <div class="flex row">Participants :
+        <ul>
+          <li *ngFor="let part of participants">
+            {{part}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <p-button>S'inscrire</p-button>
+</p-card>
