@@ -1,43 +1,43 @@
 <div class="login-container">
   <h2>Login</h2>
-  <form (ngSubmit)="login()">
-    <div class="p-fluid">
-      <div class="p-field">
-        <label for="email">Email</label>
-        <span class="p-input-icon-left">
-          <i class="pi pi-envelope"></i>
-          <input
-            id="email"
-            type="text"
-            pInputText
-            [(ngModel)]="email"
-            name="email"
-          />
-        </span>
-      </div>
-      <div class="p-field">
-        <label for="password">Password</label>
-        <span class="p-input-icon-left">
-          <i class="pi pi-lock"></i>
-          <input
-            id="password"
-            type="password"
-            pInputText
-            [(ngModel)]="password"
-            name="password"
-          />
-        </span>
-      </div>
+  <form (ngSubmit)="login()" class="p-fluid">
+    <div class="p-field">
+      <label for="email">Email</label>
+      <span class="p-input-icon-left">
+        <i class="pi pi-envelope"></i>
+        <input
+          id="email"
+          type="text"
+          pInputText
+          [(ngModel)]="email"
+          name="email"
+        />
+      </span>
+    </div>
+    <div class="p-field">
+      <label for="password">Password</label>
+      <span class="p-input-icon-left">
+        <i class="pi pi-lock"></i>
+        <input
+          id="password"
+          type="password"
+          pInputText
+          [(ngModel)]="password"
+          name="password"
+        />
+      </span>
+    </div>
+    <div class="p-field">
+      <a routerLink="/register" class="p-mr-2"
+        >Pas encore inscrit ? S'inscrire</a
+      >
       <button
         type="submit"
         pButton
         label="Login"
         icon="pi pi-sign-in"
-        class="p-button-success"
+        class="p-button p-button-success p-button-sm p-mt-2"
       ></button>
     </div>
   </form>
-  <div *ngIf="loginError" class="p-field">
-    <p class="p-error">{{ loginError }}</p>
-  </div>
 </div>

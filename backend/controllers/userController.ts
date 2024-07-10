@@ -30,6 +30,6 @@ export const updateUser = async (req: CustomRequest, res: Response) => {
 
     res.status(200).json({ message: "User updated successfully" });
   } catch (error) {
-    res.status(500).json({ message: "Server error" });
+    res.status(500).json({ message: "Server error " });
   }
 };
