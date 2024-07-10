@@ -19,6 +19,7 @@ import { ContactPage } from './pages/contact/contact.page';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { InputTextModule } from 'primeng/inputtext';
+import {DividerModule} from "primeng/divider";
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { InputTextModule } from 'primeng/inputtext';
     BrowserAnimationsModule,
     HttpClientModule,
     InputTextModule,
+    DividerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
