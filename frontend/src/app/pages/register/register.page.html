@@ -1,36 +1,93 @@
 <div class="register-container">
-  <h2>Register</h2>
-  <form (ngSubmit)="register()">
+  <h2>Inscription</h2>
+  <form (ngSubmit)="register()" class="p-fluid">
     <div class="p-field">
-      <label for="username">Username</label>
-      <input
-        id="username"
-        type="text"
-        pInputText
-        [(ngModel)]="username"
-        name="username"
-      />
+      <label for="firstName">Prénom</label>
+      <span class="p-input-icon-left">
+        <input
+          id="firstName"
+          type="text"
+          pInputText
+          [(ngModel)]="firstName"
+          name="firstName"
+          [ngClass]="{'invalid-input': !isValid['firstName']}"
+          class="button-small-width"
+        />
+      </span>
+    </div>
+    <div class="p-field">
+      <label for="lastName">Nom</label>
+      <span class="p-input-icon-left">
+        <input
+          id="lastName"
+          type="text"
+          pInputText
+          [(ngModel)]="lastName"
+          name="lastName"
+          [ngClass]="{'invalid-input': !isValid['lastName']}"
+          class="button-small-width"
+        />
+      </span>
+    </div>
+    <div class="p-field">
+      <label for="username">Nom d'utilisateur</label>
+      <span class="p-input-icon-left">
+        <input
+          id="username"
+          type="text"
+          pInputText
+          [(ngModel)]="username"
+          name="username"
+          [ngClass]="{'invalid-input': !isValid['username']}"
+          class="button-small-width"
+        />
+      </span>
     </div>
     <div class="p-field">
       <label for="email">Email</label>
-      <input
-        id="email"
-        type="text"
-        pInputText
-        [(ngModel)]="email"
-        name="email"
-      />
+      <span class="p-input-icon-left">
+        <i class="pi pi-envelope"></i>
+        <input
+          id="email"
+          type="text"
+          pInputText
+          [(ngModel)]="email"
+          name="email"
+          [ngClass]="{'invalid-input': !isValid['email']}"
+          class="button-small-width"
+        />
+      </span>
     </div>
     <div class="p-field">
-      <label for="password">Password</label>
-      <input
-        id="password"
-        type="password"
-        pInputText
-        [(ngModel)]="password"
-        name="password"
-      />
+      <label for="password">Mot de passe</label>
+      <span class="p-input-icon-left">
+        <i class="pi pi-lock"></i>
+        <input
+          id="password"
+          type="password"
+          pInputText
+          [(ngModel)]="password"
+          name="password"
+          [ngClass]="{'invalid-input': !isValid['password']}"
+          class="button-small-width"
+        />
+      </span>
     </div>
-    <button type="submit" pButton label="Register"></button>
+    <div class="p-field">
+      <button
+        pButton
+        type="button"
+        label="Vous avez déjà un compte ?"
+        class="p-button-text p-mr-2 button-small-width"
+        routerLink="/login"
+      ></button>
+      <button
+        type="submit"
+        pButton
+        label="S'inscrire"
+        icon="pi pi-sign-in"
+        class="p-button p-button-success p-button-sm p-mt-2 button-small-width"
+      ></button>
+    </div>
   </form>
 </div>
