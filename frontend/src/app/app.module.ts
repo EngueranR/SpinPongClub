@@ -10,8 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginPage } from './pages/login/login.page';
 import { MenubarModule } from 'primeng/menubar';
 import { RegisterPage } from './pages/register/register.page';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TournoiPage } from './pages/tournoi/tournoi.page';
 import { EvenementPage } from './pages/evenement/evenement.page';
 import { ClubPage } from './pages/club/club.page';
@@ -19,18 +18,17 @@ import { ContactPage } from './pages/contact/contact.page';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { InputTextModule } from 'primeng/inputtext';
-import {DividerModule} from "primeng/divider";
+import { DividerModule } from 'primeng/divider';
 import { TournamentPage } from './pages/tournament/tournament.page';
-import {InputTextareaModule} from "primeng/inputtextarea";
-import {AdministrationPage} from "./pages/administration/administration.page";
-import {MenuModule} from "primeng/menu";
-import {TabMenuModule} from "primeng/tabmenu";
-import {TabViewModule} from "primeng/tabview";
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { AdministrationPage } from './pages/administration/administration.page';
+import { MenuModule } from 'primeng/menu';
+import { TabMenuModule } from 'primeng/tabmenu';
+import { TabViewModule } from 'primeng/tabview';
 import { AdministrationTournamentsComponent } from './components/administration/administration-tournaments/administration-tournaments.component';
-import {TableModule} from "primeng/table";
-import {Ripple} from "primeng/ripple";
-import {CalendarModule} from "primeng/calendar";
-import { ToastModule } from 'primeng/toast';
+import { TableModule } from 'primeng/table';
+import { Ripple } from 'primeng/ripple';
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
   declarations: [
@@ -46,7 +44,7 @@ import { ToastModule } from 'primeng/toast';
     NavBarComponent,
     TournamentPage,
     AdministrationPage,
-    AdministrationTournamentsComponent
+    AdministrationTournamentsComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,7 +64,7 @@ import { ToastModule } from 'primeng/toast';
     TabMenuModule,
     TabViewModule,
     TableModule,
-    Ripple,
+    //Ripple,
     CalendarModule,
   ],
   providers: [],
