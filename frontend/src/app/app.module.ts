@@ -21,6 +21,9 @@ import {PRIME_NG_LOCALE_FR} from "../../fr";
 import {InputTextModule} from "primeng/inputtext";
 import {MessageModule} from "primeng/message";
 import { LoginPage } from './pages/user/login/login.page';
+import {UsersService} from "./services/users.service";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
+
 
 @NgModule({
   declarations: [
@@ -30,7 +33,7 @@ import { LoginPage } from './pages/user/login/login.page';
     MenuComponent,
     AdministrationPage,
     TournamentComponent,
-    LoginPage
+    LoginPage,
   ],
   imports: [
     BrowserModule,
@@ -45,10 +48,11 @@ import { LoginPage } from './pages/user/login/login.page';
     FormsModule,
     ReactiveFormsModule,
     InputTextModule,
-    MessageModule
+    MessageModule,
+    HttpClientModule
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'fr-FR' }
+    { provide: LOCALE_ID, useValue: 'fr-FR' },
   ],
   bootstrap: [AppComponent]
 })

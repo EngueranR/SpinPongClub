@@ -19,7 +19,7 @@
 <div class="p-grid p-justify-center" style="margin-top: 2rem;" *ngIf="mode === 'signup'">
   <div class="p-col-12 p-md-6">
     <h2>Inscription</h2>
-    <form [formGroup]="signupForm" (ngSubmit)="onSignup()">
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
       <div class="p-field">
         <label for="signup-username">Nom d'utilisateur</label>
         <input id="signup-username" formControlName="username" pInputText>
@@ -32,7 +32,7 @@
         <label for="signup-password">Mot de passe</label>
         <input id="signup-password" formControlName="password" type="password" pInputText>
       </div>
-      <button type="submit" pButton label="S'inscrire" [disabled]="!signupForm.valid"></button>
+      <button type="submit" pButton label="S'inscrire" [disabled]="!registerForm.valid"></button>
     </form>
   </div>
 </div>

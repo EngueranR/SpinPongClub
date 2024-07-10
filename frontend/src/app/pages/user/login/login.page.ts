@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {UsersService} from "../../../services/users.service";
 
 @Component({
   selector: 'app-login',
@@ -8,10 +9,10 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 })
 export class LoginPage implements OnInit {
   loginForm!: FormGroup;
-  signupForm!: FormGroup;
+  registerForm!: FormGroup;
   mode: 'signup' | 'login' = 'login';
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private userService: UsersService) {}
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -19,7 +20,7 @@ export class LoginPage implements OnInit {
       password: ['', Validators.required],
     })
 
-    this.signupForm = this.fb.group({
+    this.registerForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -27,16 +28,33 @@ export class LoginPage implements OnInit {
   }
 
   onLogin(): void {
+    const {username, password} = this.registerForm.value;
     if(this.loginForm.valid) {
+      this.userService.login(username, password).subscribe({
+        next: () => {
+          console.log('Good')
+        },
+        error: () => {
+          console.error('Pas good')
+        }
+      })
       console.log(this.loginForm.value)
     } else {
       console.log('Formulaire non valide')
     }
   }
 
-  onSignup(): void {
-    if(this.signupForm.valid) {
-      console.log(this.signupForm.value)
+  onRegister(): void {
+    const {username, password, email} = this.registerForm.value;
+    if(this.registerForm.valid) {
+      this.userService.register(username, password, email).subscribe({
+        next: () => {
+          console.log('Good')
+        },
+        error: () => {
+          console.error('Pas good')
+        }
+      })
     } else {
       console.log('Formulaire non valide')
     }
