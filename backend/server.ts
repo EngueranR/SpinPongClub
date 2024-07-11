@@ -5,6 +5,7 @@ import contactRoutes from "./routes/contactRoutes";
 import newsRoutes from "./routes/newsRoutes";
 import cors from "cors";
 import tournamentsRoutes from "./routes/tournamentsRoutes";
+import eventRoutes from "./routes/eventRoutes";
 
 const corsOptions = {
   origin: "http://localhost:4200", // Remplacez cette URL par celle de votre frontend
@@ -19,6 +20,7 @@ app.use("/routes/user", userRoutes);
 app.use("/routes/contact", contactRoutes);
 app.use("/routes/news", newsRoutes);
 app.use("/routes/tournaments", tournamentsRoutes);
+app.use("/routes/event", eventRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
