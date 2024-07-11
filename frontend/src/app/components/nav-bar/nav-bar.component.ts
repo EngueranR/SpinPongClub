@@ -10,16 +10,17 @@ import { AuthService } from '../../services/auth.service';
 export class NavBarComponent implements OnInit {
   items: MenuItem[] = [];
   isLoggedIn: boolean = false;
+  isAdmin: boolean = false;
 
   constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit() {
+    this.isAdmin = this.authService.isAdmin();
     this.authService.isLoggedIn.subscribe((loggedIn) => {
       this.isLoggedIn = loggedIn;
       this.updateMenuItems();
     });
   }
-
   updateMenuItems() {
     this.items = [
       {
@@ -51,16 +52,28 @@ export class NavBarComponent implements OnInit {
         routerLink: '/contact',
       },
     ];
+
     if (this.isLoggedIn) {
+      this.isAdmin = this.authService.isAdmin();
+      console.log(this.isAdmin);
+      if (this.isAdmin) {
+        this.items.push({
+          label: 'Panel Admin',
+          icon: 'pi pi-fw pi-cog',
+          routerLink: '/admin',
+          visible: this.isAdmin,
+        });
+      }
+
       this.items.push({
-        label: 'Logout',
+        label: 'Déconnexion',
         icon: 'pi pi-fw pi-sign-out',
         command: () => this.logout(),
         styleClass: 'right-aligned-item login-item',
       });
     } else {
       this.items.push({
-        label: 'Login',
+        label: 'Connexion',
         icon: 'pi pi-fw pi-user',
         command: () => this.router.navigate(['/login']),
         styleClass: 'right-aligned-item login-item',

@@ -1,19 +1,101 @@
-<p-card header="Nom du tournoi" subheader="Début : 01/08/2024" class="m-2">
-  <p-divider styleClass="m-0"></p-divider>
-  <div class="flex row">
-    <div class="col">
-      <div class="mt-2">Nombre maximal de participants : </div>
-      <div class="mt-2">Prix</div>
-    </div>
-    <div class="col">
-      <div class="flex row">Participants :
-        <ul>
-          <li *ngFor="let part of participants">
-            {{part}}
-          </li>
-        </ul>
-      </div>
-    </div>
+<div *ngIf="isAdmin" class="p-grid">
+  <div class="p-col-12 p-md-6 p-lg-4">
+    <p-card>
+      <ng-template pTemplate="header">
+        <h3>Créer un nouveau tournoi</h3>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <form (ngSubmit)="createTournament()">
+          <div class="p-fluid">
+            <div class="p-field">
+              <input
+                id="name"
+                placeholder="Nom du tournoi"
+                type="text"
+                pInputText
+                [(ngModel)]="newTournament.name"
+                name="name"
+                required
+              />
+            </div>
+
+            <div class="p-field">
+              <p-calendar
+                placeholder="Date de début"
+                id="startDate"
+                [(ngModel)]="newTournament.startDate"
+                name="startDate"
+                inputId="startDate"
+                [showIcon]="true"
+              ></p-calendar>
+            </div>
+
+            <div class="p-field">
+              <p-inputNumber
+                placeholder="Nombre maximal de participants"
+                id="maxParticipants"
+                [(ngModel)]="newTournament.maxParticipants"
+                name="maxParticipants"
+                [min]="1"
+              ></p-inputNumber>
+            </div>
+
+            <div class="p-field">
+              <input
+                id="prize"
+                placeholder="Prix"
+                type="text"
+                pInputText
+                [(ngModel)]="newTournament.prize"
+                name="prize"
+                required
+              />
+            </div>
+
+            <button pButton type="submit" label="Créer"></button>
+          </div>
+        </form>
+      </ng-template>
+    </p-card>
   </div>
-  <p-button>S'inscrire</p-button>
-</p-card>
+</div>
+
+<div class="p-grid">
+  <div *ngFor="let tournament of tournaments" class="p-col-12 p-md-6 p-lg-4">
+    <p-card
+      header="{{tournament?.name}}"
+      subheader="Début : {{tournament?.startDate | date:'dd/MM/yyyy'}}"
+      class="m-2"
+    >
+      <p-divider styleClass="m-0"></p-divider>
+      <div class="flex row">
+        <div class="col">
+          <div class="mt-2">
+            Nombre maximal de participants : {{tournament?.maxParticipants}}
+          </div>
+          <div class="mt-2">Prix : {{tournament?.prize}}</div>
+        </div>
+        <div class="col">
+          <div class="flex row">
+            Participants :
+            <ul>
+              <li *ngFor="let part of tournament?.participants">{{part}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-content-between">
+        <p-button
+          label="S'inscrire"
+          (onClick)="registerForTournament(tournament._id)"
+        ></p-button>
+        <p-button
+          *ngIf="isAdmin"
+          (onClick)="deleteTournament(tournament._id)"
+          label="✖"
+          styleClass="delete-button-custom"
+        ></p-button>
+      </div>
+    </p-card>
+  </div>
+</div>
