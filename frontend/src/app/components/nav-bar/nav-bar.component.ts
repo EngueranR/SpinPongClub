@@ -53,14 +53,14 @@ export class NavBarComponent implements OnInit {
     ];
     if (this.isLoggedIn) {
       this.items.push({
-        label: 'Logout',
+        label: 'Se déconnecter',
         icon: 'pi pi-fw pi-sign-out',
         command: () => this.logout(),
         styleClass: 'right-aligned-item login-item',
       });
     } else {
       this.items.push({
-        label: 'Login',
+        label: 'Se connecter',
         icon: 'pi pi-fw pi-user',
         command: () => this.router.navigate(['/login']),
         styleClass: 'right-aligned-item login-item',
