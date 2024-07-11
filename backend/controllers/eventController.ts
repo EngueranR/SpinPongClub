@@ -65,7 +65,7 @@ export const deleteEvent = async (req: Request, res: Response) => {
   }
 };
 
-export const addParticipant = async (req: Request, res: Response) => {
+export const addParticipantEvent = async (req: Request, res: Response) => {
   const { id } = req.params;
   const { participantId } = req.body;
   try {
@@ -83,5 +83,29 @@ export const addParticipant = async (req: Request, res: Response) => {
     res.json(event);
   } catch (error) {
     res.status(500).json({ message: "Erreur lors de l'ajout du participant" });
+  }
+};
+
+export const removeParticipantEvent = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { participantId } = req.body;
+  try {
+    const event = await Event.findById(id);
+    if (!event) {
+      return res.status(404).json({ message: "Tournoi non trouvé" });
+    }
+    const participantIndex = event.participants.indexOf(participantId);
+    if (participantIndex === -1) {
+      return res
+        .status(404)
+        .json({ message: "Participant non trouvé dans le tournoi" });
+    }
+    event.participants.splice(participantIndex, 1);
+    await event.save();
+    res.json(event);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Erreur lors de la suppression du participant" });
   }
 };

@@ -3,9 +3,10 @@ import {
   createTournament,
   getAllTournaments,
   getTournamentById,
-  addParticipant,
+  addParticipantTournament,
   deleteTournament,
   updateTournament,
+  removeParticipantTournament,
 } from "../controllers/tournamentsController";
 
 const router = Router();
@@ -13,8 +14,9 @@ const router = Router();
 router.post("/", createTournament);
 router.get("/", getAllTournaments);
 router.get("/:id", getTournamentById);
-router.post("/:id/participants", addParticipant);
+router.post("/:id/participants", addParticipantTournament);
 router.delete("/:id", deleteTournament);
 router.put("/:id", updateTournament);
+router.delete("/:id/participants", removeParticipantTournament);
 
 export default router;

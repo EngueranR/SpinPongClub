@@ -45,7 +45,7 @@ export const getTournamentById = async (req: Request, res: Response) => {
   }
 };
 
-export const addParticipant = async (req: Request, res: Response) => {
+export const addParticipantTournament = async (req: Request, res: Response) => {
   const { id } = req.params;
   const { participantId } = req.body;
   try {
@@ -111,5 +111,32 @@ export const updateTournament = async (req: Request, res: Response) => {
   } catch (error) {
     console.error("Error updating tournament:", error);
     res.status(500).json({ message: "Server error" });
+  }
+};
+
+export const removeParticipantTournament = async (
+  req: Request,
+  res: Response
+) => {
+  const { id } = req.params;
+  const { participantId } = req.body;
+  try {
+    const tournament = await Tournament.findById(id);
+    if (!tournament) {
+      return res.status(404).json({ message: "Tournoi non trouvé" });
+    }
+    const participantIndex = tournament.participants.indexOf(participantId);
+    if (participantIndex === -1) {
+      return res
+        .status(404)
+        .json({ message: "Participant non trouvé dans le tournoi" });
+    }
+    tournament.participants.splice(participantIndex, 1);
+    await tournament.save();
+    res.json(tournament);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Erreur lors de la suppression du participant" });
   }
 };

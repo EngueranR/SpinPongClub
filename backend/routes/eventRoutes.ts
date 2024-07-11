@@ -3,7 +3,8 @@ import {
   createEvent,
   updateEvent,
   deleteEvent,
-  addParticipant,
+  addParticipantEvent,
+  removeParticipantEvent,
 } from "../controllers/eventController";
 
 const router = Router();
@@ -11,6 +12,7 @@ const router = Router();
 router.post("/", createEvent);
 router.put("/:id", updateEvent);
 router.delete("/:id", deleteEvent);
-router.post("/:id/participants", addParticipant);
+router.post("/:id/participants", addParticipantEvent);
+router.delete("/:id/participants", removeParticipantEvent);
 
 export default router;
