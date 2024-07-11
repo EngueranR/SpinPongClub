@@ -1,8 +1,0 @@
-<p-menubar [model]="items">
-  <ng-template pTemplate="item" let-item let-root="root">
-    <a [href]="item.to" *ngIf="item.to">
-    <span [class]="item.icon"></span>
-    <span class="ml-2">{{ item.label }}</span>
-    </a>
-  </ng-template>
-</p-menubar>

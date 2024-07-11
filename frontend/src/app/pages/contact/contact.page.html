@@ -1,18 +1,27 @@
-<p-card header="Nous contacter" class="m-2 w-auto flex justify-content-center mt-5">
+<p-card
+  header="Nous contacter"
+  class="m-2 w-auto flex justify-content-center mt-5"
+>
   <form [formGroup]="contactForm" class="col">
     <div class="flex row justify-content-center m-2 align-items-center">
       <label for="name" class="mr-3">Votre nom</label>
-      <input type="text" pInputText id="name">
+      <input type="text" pInputText id="name" formControlName="name" />
     </div>
     <div class="flex row justify-content-center m-2 align-items-center">
-    <label for="email" class="mr-3">Votre email</label>
-      <input type="email" pInputText id="email">
-      </div>
+      <label for="email" class="mr-3">Votre email</label>
+      <input type="email" pInputText id="email" formControlName="email" />
+    </div>
     <div class="flex row justify-content-center m-2 align-items-center">
       <label for="message" class="mr-3">Message</label>
-      <textarea pInputTextarea id="message"></textarea>
+      <textarea
+        pInputTextarea
+        id="message"
+        formControlName="message"
+      ></textarea>
     </div>
+    <p-button class="flex justify-content-center" (onClick)="submitForm()"
+      >Envoyer</p-button
+    >
   </form>
-  <p-button class="flex justify-content-center" (onClick)="submitForm()">Envoyer</p-button>
 </p-card>
-
+<p-toast></p-toast>

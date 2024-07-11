@@ -11,7 +11,6 @@ import { LoginPage } from './pages/login/login.page';
 import { MenubarModule } from 'primeng/menubar';
 import { RegisterPage } from './pages/register/register.page';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { EvenementPage } from './pages/evenement/evenement.page';
 import { ClubPage } from './pages/club/club.page';
 import { ContactPage } from './pages/contact/contact.page';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
@@ -30,7 +29,8 @@ import { CalendarModule } from 'primeng/calendar';
 import { AdministrationNewsComponent } from './components/administration/administration-news/administration-news.component';
 import { AdministrationEventsComponent } from './components/administration/administration-events/administration-events.component';
 import { InputNumberModule } from 'primeng/inputnumber';
-import {ToastModule} from "primeng/toast";
+import { ToastModule } from 'primeng/toast';
+import { EvenementPage } from './pages/evenement/evenement.page';
 
 @NgModule({
   declarations: [

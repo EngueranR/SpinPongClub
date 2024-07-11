@@ -1,1 +1,98 @@
-<p>evenement works!</p>
+<div *ngIf="isAdmin" class="p-grid">
+  <div class="p-col-12 p-md-6 p-lg-4">
+    <p-card>
+      <ng-template pTemplate="header">
+        <h3>Créer un nouvel événement</h3>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <form (ngSubmit)="createEvent()">
+          <div class="p-fluid">
+            <div class="p-field">
+              <input
+                id="title"
+                placeholder="Titre de l'événement"
+                type="text"
+                pInputText
+                [(ngModel)]="newEvent.title"
+                name="title"
+                required
+              />
+            </div>
+
+            <div class="p-field">
+              <p-calendar
+                placeholder="Date de début"
+                id="startDate"
+                [(ngModel)]="newEvent.startDate"
+                name="startDate"
+                inputId="startDate"
+                [showIcon]="true"
+              ></p-calendar>
+            </div>
+
+            <div class="p-field">
+              <textarea
+                id="description"
+                placeholder="Description"
+                pInputTextarea
+                [(ngModel)]="newEvent.description"
+                name="description"
+                required
+              ></textarea>
+            </div>
+
+            <button pButton type="submit" label="Créer"></button>
+          </div>
+        </form>
+      </ng-template>
+    </p-card>
+  </div>
+</div>
+
+<div *ngIf="events.length; else noEventsTemplate" class="p-grid">
+  <div *ngFor="let event of events" class="p-col-12 p-md-6 p-lg-4">
+    <p-card
+      header="{{event?.title}}"
+      subheader="Début : {{event?.startDate | date:'dd/MM/yyyy'}}"
+      class="m-2"
+    >
+      <p-divider styleClass="m-0"></p-divider>
+      <div class="flex row">
+        <div class="col">
+          <div class="mt-2">Description : {{event?.description}}</div>
+        </div>
+        <div class="col">
+          <div class="flex row">
+            Participants :
+            <ul>
+              <li *ngFor="let part of event?.participants">{{part}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-content-between">
+        <p-button
+          label="S'inscrire"
+          (onClick)="event._id && registerForEvent(event._id)"
+        ></p-button>
+        <p-button
+          *ngIf="isAdmin"
+          (onClick)="event._id && deleteEvent(event._id)"
+          label="✖"
+          styleClass="delete-button-custom"
+        ></p-button>
+      </div>
+    </p-card>
+  </div>
+</div>
+<ng-template #noEventsTemplate>
+  <p-card>
+    <ng-template pTemplate="header">
+      <h3>Information</h3>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <div>Aucun événement n'est actuellement disponible.</div>
+    </ng-template>
+  </p-card>
+</ng-template>
+<p-toast></p-toast>

@@ -9,8 +9,8 @@ export class Event {
     title: string = '',
     description: string = '',
     participants: string[] = [],
-    startDate: Date,
-    ) {
+    startDate: Date
+  ) {
     this.title = title;
     this.description = description;
     this.participants = participants;

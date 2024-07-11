@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import User from "../models/user";
-import bcrypt from "bcryptjs";
+import * as bcrypt from "bcryptjs";
 
 interface CustomRequest extends Request {
   userId?: string;

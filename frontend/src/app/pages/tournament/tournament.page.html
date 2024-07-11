@@ -60,7 +60,7 @@
   </div>
 </div>
 
-<div class="p-grid">
+<div *ngIf="tournaments.length; else noTournamentsTemplate" class="p-grid">
   <div *ngFor="let tournament of tournaments" class="p-col-12 p-md-6 p-lg-4">
     <p-card
       header="{{tournament?.name}}"
@@ -87,11 +87,11 @@
       <div class="flex justify-content-between">
         <p-button
           label="S'inscrire"
-          (onClick)="registerForTournament(tournament._id)"
+          (onClick)="tournament._id && registerForTournament(tournament._id)"
         ></p-button>
         <p-button
           *ngIf="isAdmin"
-          (onClick)="deleteTournament(tournament._id)"
+          (onClick)="tournament._id && deleteTournament(tournament._id)"
           label="✖"
           styleClass="delete-button-custom"
         ></p-button>
@@ -99,3 +99,13 @@
     </p-card>
   </div>
 </div>
+<ng-template #noTournamentsTemplate>
+  <p-card>
+    <ng-template pTemplate="header">
+      <h3>Information</h3>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <div>Aucun tournoi n'est actuellement disponible.</div>
+    </ng-template>
+  </p-card>
+</ng-template>

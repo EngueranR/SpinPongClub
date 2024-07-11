@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { User } from '../../models/user';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
+  providers: [MessageService],
 })
 export class RegisterPage {
   username: string = '';
@@ -22,7 +24,11 @@ export class RegisterPage {
     lastName: true,
   };
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private messageService: MessageService
+  ) {}
 
   validateInputs(): boolean {
     this.isValid['username'] = !!this.username;
@@ -53,19 +59,39 @@ export class RegisterPage {
           this.authService.login(this.email, this.password).subscribe(
             (loginUser) => {
               localStorage.setItem('token', loginUser.token!);
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Inscription réussie',
+                detail: 'Vous êtes maintenant inscrit et connecté',
+              });
               this.router.navigate(['/']);
             },
             (loginError) => {
               console.error('Login failed', loginError);
+              this.messageService.add({
+                severity: 'error',
+                summary: 'Erreur de connexion',
+                detail: 'Inscription réussie, mais la connexion a échoué',
+              });
             }
           );
         },
         (error) => {
           console.error('Registration failed', error);
+          this.messageService.add({
+            severity: 'error',
+            summary: "Erreur d'inscription",
+            detail: "Une erreur est survenue lors de l'inscription",
+          });
         }
       );
     } else {
       console.error('Validation failed');
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Validation échouée',
+        detail: 'Veuillez vérifier les champs du formulaire',
+      });
     }
   }
 }

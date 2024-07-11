@@ -1,39 +1,42 @@
 import { Component } from '@angular/core';
-import {Event} from "../../../models/event";
-import {EventsService} from "../../../services/events.service";
-import {MessageService} from "primeng/api";
-
+import { Event } from '../../../models/event';
+import { EventService } from '../../../services/event.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-administration-events',
   templateUrl: './administration-events.component.html',
   styleUrls: ['./administration-events.component.scss'],
-  providers: [MessageService]
+  providers: [MessageService],
 })
 export class AdministrationEventsComponent {
   clonedTournament: { [s: string]: Event } = {};
 
-  events!: Event[]
+  events!: Event[];
 
-  constructor(private eventService: EventsService, private messageService: MessageService) {}
+  constructor(
+    private eventService: EventService,
+    private messageService: MessageService
+  ) {}
 
   ngOnInit() {
-    this.getEvents()
+    this.getEvents();
   }
 
   getEvents() {
     this.eventService.getEvents().subscribe({
       next: (res) => {
-        this.events = res
+        this.events = res;
       },
       error: (error) => {
         this.messageService.add({
           severity: 'error',
-          summary: 'Une erreur est survenue lors de la récupération des évènements',
-          detail: error
-        })
-      }
-    })
+          summary:
+            'Une erreur est survenue lors de la récupération des évènements',
+          detail: error,
+        });
+      },
+    });
   }
 
   onRowEditInit(event: Event) {
@@ -45,17 +48,18 @@ export class AdministrationEventsComponent {
       next: () => {
         this.messageService.add({
           severity: 'success',
-          summary: 'L\'évènement a bien été modifié'
-        })
+          summary: "L'évènement a bien été modifié",
+        });
       },
       error: (error) => {
         this.messageService.add({
           severity: 'success',
-          summary: 'Une erreur est survenue lors de la modification de l\'évènement',
+          summary:
+            "Une erreur est survenue lors de la modification de l'évènement",
           detail: error,
-        })
-      }
-    })
+        });
+      },
+    });
   }
 
   onRowEditCancel(event: Event, index: number) {
@@ -67,19 +71,20 @@ export class AdministrationEventsComponent {
       next: () => {
         this.messageService.add({
           severity: 'success',
-          summary: 'L\'évènement a bien été supprimé'
-        })
+          summary: "L'évènement a bien été supprimé",
+        });
       },
       error: (error) => {
         this.messageService.add({
           severity: 'success',
-          summary: 'Une erreur est survenue lors de la suppression de l\'évènement',
+          summary:
+            "Une erreur est survenue lors de la suppression de l'évènement",
           detail: error,
-        })
+        });
       },
       complete: () => {
-        this.getEvents()
-      }
-    })
+        this.getEvents();
+      },
+    });
   }
 }
