@@ -58,6 +58,11 @@ export const addParticipant = async (req: Request, res: Response) => {
         message: "Le tournoi a atteint le nombre maximum de participants",
       });
     }
+    if (tournament.participants.includes(participantId)) {
+      return res.status(400).json({
+        message: "Le participant est déjà inscrit au tournoi",
+      });
+    }
     tournament.participants.push(participantId);
     await tournament.save();
     res.json(tournament);
