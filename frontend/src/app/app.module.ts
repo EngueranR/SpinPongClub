@@ -26,9 +26,12 @@ import { TabMenuModule } from 'primeng/tabmenu';
 import { TabViewModule } from 'primeng/tabview';
 import { AdministrationTournamentsComponent } from './components/administration/administration-tournaments/administration-tournaments.component';
 import { TableModule } from 'primeng/table';
-import { Ripple } from 'primeng/ripple';
 import { CalendarModule } from 'primeng/calendar';
+import { AdministrationNewsComponent } from './components/administration/administration-news/administration-news.component';
+import { AdministrationEventsComponent } from './components/administration/administration-events/administration-events.component';
+import {Ripple} from "primeng/ripple";
 import { InputNumberModule } from 'primeng/inputnumber';
+
 
 @NgModule({
   declarations: [
@@ -45,6 +48,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
     TournamentPage,
     AdministrationPage,
     AdministrationTournamentsComponent,
+    AdministrationNewsComponent,
+    AdministrationEventsComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,6 +72,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
     TableModule,
     //Ripple,
     CalendarModule,
+    Ripple,
   ],
   providers: [],
   bootstrap: [AppComponent],

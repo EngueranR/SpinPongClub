@@ -1,26 +1,37 @@
-<p-table [value]="tournaments" dataKey="id" editMode="row">
-    <ng-template pTemplate="header">
-      <tr>
-        <th>Id</th>
-        <th>Nom</th>
-        <th>Date</th>
-        <th>Prix</th>
-        <th>Nombre de participants max</th>
-        <th></th>
-      </tr>
-    </ng-template>
-  <ng-template pTemplate="body" let-tournament let-editing="editing" let-ri="rowIndex">
-    <tr [pEditableRow]="tournament">
-      <td>{{ tournament.id }}</td>
+<p-table [value]="events" dataKey="id" editMode="row">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Id</th>
+      <th>Titre</th>
+      <th>Description</th>
+      <th>Date</th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-event let-editing="editing" let-ri="rowIndex">
+    <tr [pEditableRow]="event">
+      <td>{{ event.id }}</td>
       <td>
         <p-cellEditor>
           <ng-template pTemplate="input">
             <input
               pInputText type="text"
-              [(ngModel)]="tournament.name" />
+              [(ngModel)]="event.title" />
           </ng-template>
           <ng-template pTemplate="output">
-            {{tournament.name}}
+            {{event.title}}
+          </ng-template>
+        </p-cellEditor>
+      </td>
+      <td>
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <input
+              pInputText type="text"
+              [(ngModel)]="event.description" />
+          </ng-template>
+          <ng-template pTemplate="output">
+            {{event.description}}
           </ng-template>
         </p-cellEditor>
       </td>
@@ -28,34 +39,10 @@
         <p-cellEditor>
           <ng-template pTemplate="input">
             <p-calendar
-              [(ngModel)]="tournament.date" />
+              [(ngModel)]="event.startDate" />
           </ng-template>
           <ng-template pTemplate="output">
-            {{ tournament.startDate | date:'dd/MM/yyyy' }}
-          </ng-template>
-        </p-cellEditor>
-      </td>
-      <td>
-        <p-cellEditor>
-          <ng-template pTemplate="input">
-            <input
-              pInputText type="text"
-              [(ngModel)]="tournament.prize" />
-          </ng-template>
-          <ng-template pTemplate="output">
-            {{tournament.prize}}
-          </ng-template>
-        </p-cellEditor>
-      </td>
-      <td>
-        <p-cellEditor>
-          <ng-template pTemplate="input">
-            <input
-              pInputText type="text"
-              [(ngModel)]="tournament.maxParticipants" />
-          </ng-template>
-          <ng-template pTemplate="output">
-            {{ tournament.maxParticipants }}
+            {{ event.startDate | date:'dd/MM/yyyy' }}
           </ng-template>
         </p-cellEditor>
       </td>
@@ -68,7 +55,7 @@
             type="button"
             pInitEditableRow
             icon="pi pi-pencil"
-            (click)="onRowEditInit(tournament)"
+            (click)="onRowEditInit(event)"
             class="p-button-rounded p-button-text">
           </button>
           <button
@@ -78,7 +65,7 @@
             type="button"
             pSaveEditableRow
             icon="pi pi-check"
-            (click)="onRowEditSave(tournament)"
+            (click)="onRowEditSave(event)"
             class="p-button-rounded p-button-text p-button-success mr-2">
           </button>
           <button
@@ -88,17 +75,17 @@
             type="button"
             pCancelEditableRow
             icon="pi pi-times"
-            (click)="onRowEditCancel(tournament, ri)"
+            (click)="onRowEditCancel(event, ri)"
             class="p-button-rounded p-button-text p-button-danger">
           </button>
           <button
             pButton
             pRipple
             type="button"
-            pCancelEditableRow
-            icon="pi pi-times"
-            (click)="onRowDelete(tournament)"
-            class="p-button-rounded p-button-text p-button-danger">
+            pInitEditableRow
+            icon="pi pi-trash"
+            (click)="onRowDelete(event)"
+            class="p-button-rounded p-button-text">
           </button>
         </div>
       </td>

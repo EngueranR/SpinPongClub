@@ -1,6 +1,26 @@
 .home-container {
   padding: 20px;
   text-align: center;
+  height: 90vh;
+
+  ::ng-deep.p-card-body {
+    border-radius: 10px;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/20220818_European_Championships_Munich_2022_Felix_Lebrun_850_9644.jpg/2560px-20220818_European_Championships_Munich_2022_Felix_Lebrun_850_9644.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(10px);
+    z-index: -1;
+  }
 
   .header-section {
     margin-bottom: 30px;

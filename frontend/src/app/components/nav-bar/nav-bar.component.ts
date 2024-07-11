@@ -66,6 +66,7 @@ export class NavBarComponent implements OnInit {
       }
 
       this.items.push({
+        label: 'Se déconnecter',
         label: 'Déconnexion',
         icon: 'pi pi-fw pi-sign-out',
         command: () => this.logout(),
@@ -73,6 +74,7 @@ export class NavBarComponent implements OnInit {
       });
     } else {
       this.items.push({
+        label: 'Se connecter',
         label: 'Connexion',
         icon: 'pi pi-fw pi-user',
         command: () => this.router.navigate(['/login']),
