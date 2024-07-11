@@ -5,13 +5,15 @@
   <ng-template pTemplate="content">
     <div class="add-news-form column">
       <div class="form-group">
-        <textarea
+        <input
+          id="name"
+          placeholder="titre"
+          type="text"
           pInputText
           [(ngModel)]="newNews.title"
-          placeholder="Titre"
-          id="title"
-          class="input-text"
-        ></textarea>
+          name="name"
+          required
+        />
       </div>
       <div class="form-group">
         <textarea
