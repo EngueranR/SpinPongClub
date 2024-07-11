@@ -11,7 +11,6 @@ import { LoginPage } from './pages/login/login.page';
 import { MenubarModule } from 'primeng/menubar';
 import { RegisterPage } from './pages/register/register.page';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TournoiPage } from './pages/tournoi/tournoi.page';
 import { EvenementPage } from './pages/evenement/evenement.page';
 import { ClubPage } from './pages/club/club.page';
 import { ContactPage } from './pages/contact/contact.page';
@@ -31,6 +30,8 @@ import { CalendarModule } from 'primeng/calendar';
 import { AdministrationNewsComponent } from './components/administration/administration-news/administration-news.component';
 import { AdministrationEventsComponent } from './components/administration/administration-events/administration-events.component';
 import {Ripple} from "primeng/ripple";
+import { InputNumberModule } from 'primeng/inputnumber';
+
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import {Ripple} from "primeng/ripple";
     HomeButtonComponent,
     LoginPage,
     RegisterPage,
-    TournoiPage,
+
     EvenementPage,
     ClubPage,
     ContactPage,
@@ -62,6 +63,7 @@ import {Ripple} from "primeng/ripple";
     HttpClientModule,
     InputTextModule,
     InputTextareaModule,
+    InputNumberModule,
     DividerModule,
     ReactiveFormsModule,
     MenuModule,
