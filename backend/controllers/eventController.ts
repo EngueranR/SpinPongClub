@@ -109,3 +109,11 @@ export const removeParticipantEvent = async (req: Request, res: Response) => {
       .json({ message: "Erreur lors de la suppression du participant" });
   }
 };
+export const getAllEvents = async (req: Request, res: Response) => {
+  try {
+    const events = await Event.find();
+    return res.status(200).json(events);
+  } catch (error) {
+    return res.status(500).json({ message: "Server error", error });
+  }
+};
