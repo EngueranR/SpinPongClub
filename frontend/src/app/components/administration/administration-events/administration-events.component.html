@@ -1,4 +1,4 @@
-<p-table [value]="events" dataKey="id" editMode="row">
+<p-table [value]="events" dataKey="_id" editMode="row">
   <ng-template pTemplate="header">
     <tr>
       <th>Id</th>
@@ -10,7 +10,7 @@
   </ng-template>
   <ng-template pTemplate="body" let-event let-editing="editing" let-ri="rowIndex">
     <tr [pEditableRow]="event">
-      <td>{{ event.id }}</td>
+      <td>{{ event._id }}</td>
       <td>
         <p-cellEditor>
           <ng-template pTemplate="input">

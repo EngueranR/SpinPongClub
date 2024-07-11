@@ -1,18 +1,23 @@
 import {Component, OnInit} from '@angular/core';
-import {TournamentService} from "../../../services/tournament.service";
+import {TournamentsService} from "../../../services/tournament.service";
 import {Tournament} from "../../../models/tournament";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-administration-tournaments',
   templateUrl: './administration-tournaments.component.html',
-  styleUrls: ['./administration-tournaments.component.scss']
+  styleUrls: ['./administration-tournaments.component.scss'],
+  providers: [MessageService]
 })
 export class AdministrationTournamentsComponent implements OnInit {
   clonedTournament: { [s: string]: Tournament } = {};
 
   tournaments!: Tournament[]
 
-  constructor(private tournamentService: TournamentService) {}
+  constructor(
+    private tournamentService: TournamentsService,
+    private messageService: MessageService
+  ) {}
 
   ngOnInit() {
     this.tournamentService.getTournaments().subscribe((res) => this.tournaments = res)
@@ -23,9 +28,21 @@ export class AdministrationTournamentsComponent implements OnInit {
   }
 
   onRowEditSave(tournament: Tournament) {
-    console.log('called')
-
-    this.tournamentService.editTournament(tournament._id as string, tournament).subscribe()
+    this.tournamentService.updateTournament(tournament._id as string, tournament).subscribe({
+      next: () => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'L\'enregistrement a bien été modifié'
+        })
+      },
+      error: (error) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Une erreur est survenue lors de la modification de l\'enregistrement',
+          detail: error
+        })
+      }
+    })
 
   }
 
@@ -34,6 +51,8 @@ export class AdministrationTournamentsComponent implements OnInit {
   }
 
   onRowDelete(id: Tournament["_id"]) {
-    this.tournamentService.deleteTournament(id as string)
+    console.log('delete', id)
+
+    this.tournamentService.deleteTournament(id as string).subscribe()
   }
 }

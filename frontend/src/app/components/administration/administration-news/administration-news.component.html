@@ -1,4 +1,5 @@
-<p-table [value]="news" dataKey="id" editMode="row">
+<p-toast></p-toast>
+<p-table [value]="news" dataKey="_id" editMode="row">
   <ng-template pTemplate="header">
     <tr>
       <th>Id</th>
@@ -9,7 +10,7 @@
   </ng-template>
   <ng-template pTemplate="body" let-news let-editing="editing" let-ri="rowIndex">
     <tr [pEditableRow]="news">
-      <td>{{ news.id }}</td>
+      <td>{{ news._id }}</td>
       <td>
         <p-cellEditor>
           <ng-template pTemplate="input">
@@ -70,7 +71,6 @@
             pButton
             pRipple
             type="button"
-            pInitEditableRow
             icon="pi pi-trash"
             (click)="onRowDelete(news)"
             class="p-button-rounded p-button-text p-button-danger">

@@ -1,4 +1,5 @@
-<p-table [value]="tournaments" dataKey="id" editMode="row">
+<p-toast></p-toast>
+<p-table [value]="tournaments" dataKey="_id" editMode="row">
     <ng-template pTemplate="header">
       <tr>
         <th>Id</th>
@@ -97,7 +98,7 @@
             type="button"
             pCancelEditableRow
             icon="pi pi-trash"
-            (click)="onRowDelete(tournament.id)"
+            (click)="onRowDelete(tournament._id)"
             class="p-button-rounded p-button-text p-button-danger">
           </button>
         </div>

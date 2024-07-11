@@ -30,6 +30,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { AdministrationNewsComponent } from './components/administration/administration-news/administration-news.component';
 import { AdministrationEventsComponent } from './components/administration/administration-events/administration-events.component';
 import { InputNumberModule } from 'primeng/inputnumber';
+import {ToastModule} from "primeng/toast";
 
 @NgModule({
   declarations: [
@@ -38,7 +39,6 @@ import { InputNumberModule } from 'primeng/inputnumber';
     HomeButtonComponent,
     LoginPage,
     RegisterPage,
-
     EvenementPage,
     ClubPage,
     ContactPage,
@@ -69,6 +69,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
     TabViewModule,
     TableModule,
     CalendarModule,
+    ToastModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
