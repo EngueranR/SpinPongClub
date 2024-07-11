@@ -33,3 +33,16 @@ export const updateUser = async (req: CustomRequest, res: Response) => {
     res.status(500).json({ message: "Server error " });
   }
 };
+
+export const getUserById = async (req: Request, res: Response) => {
+  try {
+    const userId = req.params.id;
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    return res.status(200).json({ username: user.username });
+  } catch (error) {
+    return res.status(500).json({ message: "Server error", error });
+  }
+};
