@@ -1,12 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-
-interface Tournament  {
-  id: string,
-  name: string,
-  startDate: Date,
-  prize: number,
-  maxParticipants: number
-}
+import {TournamentService} from "../../../services/tournament.service";
+import {Tournament} from "../../../models/tournament";
 
 @Component({
   selector: 'app-administration-tournaments',
@@ -16,31 +10,30 @@ interface Tournament  {
 export class AdministrationTournamentsComponent implements OnInit {
   clonedTournament: { [s: string]: Tournament } = {};
 
-  tournaments: Tournament[] =
-    [
-      {id: '1', name: 'Tournois 1', startDate: new Date(), prize: 0, maxParticipants: 10},
-      {id: '2', name: 'Tournois 2', startDate: new Date(), prize: 10, maxParticipants: 20},
-      {id: '3', name: 'Tournois 3', startDate: new Date(), prize: 30, maxParticipants: 5}
-    ]
+  tournaments!: Tournament[]
+
+  constructor(private tournamentService: TournamentService) {}
 
   ngOnInit() {
-    //call API pour récupérer les tournois
+    this.tournamentService.getTournaments().subscribe((res) => this.tournaments = res)
   }
 
   onRowEditInit(tournament: Tournament) {
-    this.clonedTournament[tournament.id] = { ...tournament };
+    this.clonedTournament[tournament._id as string] = { ...tournament };
   }
 
   onRowEditSave(tournament: Tournament) {
-    console.log(tournament)
-    //Call API pour modifier le tournoi
+    console.log('called')
+
+    this.tournamentService.editTournament(tournament._id as string, tournament).subscribe()
+
   }
 
   onRowEditCancel(tournament: Tournament, index: number) {
-    delete this.clonedTournament[tournament.id];
+    delete this.clonedTournament[tournament._id as string];
   }
 
-  onRowDelete(tournament: Tournament) {
-    // call API pour delete un tournament
+  onRowDelete(id: Tournament["_id"]) {
+    this.tournamentService.deleteTournament(id as string)
   }
 }
