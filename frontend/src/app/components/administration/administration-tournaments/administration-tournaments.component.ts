@@ -1,46 +1,58 @@
 import {Component, OnInit} from '@angular/core';
-
-interface Tournament  {
-  id: string,
-  name: string,
-  startDate: Date,
-  prize: number,
-  maxParticipants: number
-}
+import {TournamentsService} from "../../../services/tournament.service";
+import {Tournament} from "../../../models/tournament";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-administration-tournaments',
   templateUrl: './administration-tournaments.component.html',
-  styleUrls: ['./administration-tournaments.component.scss']
+  styleUrls: ['./administration-tournaments.component.scss'],
+  providers: [MessageService]
 })
 export class AdministrationTournamentsComponent implements OnInit {
   clonedTournament: { [s: string]: Tournament } = {};
 
-  tournaments: Tournament[] =
-    [
-      {id: '1', name: 'Tournois 1', startDate: new Date(), prize: 0, maxParticipants: 10},
-      {id: '2', name: 'Tournois 2', startDate: new Date(), prize: 10, maxParticipants: 20},
-      {id: '3', name: 'Tournois 3', startDate: new Date(), prize: 30, maxParticipants: 5}
-    ]
+  tournaments!: Tournament[]
+
+  constructor(
+    private tournamentService: TournamentsService,
+    private messageService: MessageService
+  ) {}
 
   ngOnInit() {
-    //call API pour récupérer les tournois
+    this.tournamentService.getTournaments().subscribe((res) => this.tournaments = res)
   }
 
   onRowEditInit(tournament: Tournament) {
-    this.clonedTournament[tournament.id] = { ...tournament };
+    this.clonedTournament[tournament._id as string] = { ...tournament };
   }
 
   onRowEditSave(tournament: Tournament) {
-    console.log(tournament)
-    //Call API pour modifier le tournoi
+    this.tournamentService.updateTournament(tournament._id as string, tournament).subscribe({
+      next: () => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'L\'enregistrement a bien été modifié'
+        })
+      },
+      error: (error) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Une erreur est survenue lors de la modification de l\'enregistrement',
+          detail: error
+        })
+      }
+    })
+
   }
 
   onRowEditCancel(tournament: Tournament, index: number) {
-    delete this.clonedTournament[tournament.id];
+    delete this.clonedTournament[tournament._id as string];
   }
 
-  onRowDelete(tournament: Tournament) {
-    // call API pour delete un tournament
+  onRowDelete(id: Tournament["_id"]) {
+    console.log('delete', id)
+
+    this.tournamentService.deleteTournament(id as string).subscribe()
   }
 }

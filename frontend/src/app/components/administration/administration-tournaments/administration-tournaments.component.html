@@ -1,4 +1,5 @@
-<p-table [value]="tournaments" dataKey="id" editMode="row">
+<p-toast></p-toast>
+<p-table [value]="tournaments" dataKey="_id" editMode="row">
     <ng-template pTemplate="header">
       <tr>
         <th>Id</th>
@@ -11,7 +12,7 @@
     </ng-template>
   <ng-template pTemplate="body" let-tournament let-editing="editing" let-ri="rowIndex">
     <tr [pEditableRow]="tournament">
-      <td>{{ tournament.id }}</td>
+      <td>{{ tournament._id }}</td>
       <td>
         <p-cellEditor>
           <ng-template pTemplate="input">
@@ -96,8 +97,8 @@
             pRipple
             type="button"
             pCancelEditableRow
-            icon="pi pi-times"
-            (click)="onRowDelete(tournament)"
+            icon="pi pi-trash"
+            (click)="onRowDelete(tournament._id)"
             class="p-button-rounded p-button-text p-button-danger">
           </button>
         </div>

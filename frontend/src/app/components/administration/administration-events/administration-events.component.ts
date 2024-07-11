@@ -1,45 +1,85 @@
 import { Component } from '@angular/core';
+import {Event} from "../../../models/event";
+import {EventsService} from "../../../services/events.service";
+import {MessageService} from "primeng/api";
 
-interface Event {
-  id: string,
-  title: string,
-  description: string,
-  startDate: Date,
-}
 
 @Component({
   selector: 'app-administration-events',
   templateUrl: './administration-events.component.html',
-  styleUrls: ['./administration-events.component.scss']
+  styleUrls: ['./administration-events.component.scss'],
+  providers: [MessageService]
 })
 export class AdministrationEventsComponent {
   clonedTournament: { [s: string]: Event } = {};
 
-  events: Event[] =
-    [
-      {id: '1', title: 'Title 1', description: 'event 1', startDate: new Date()},
-      {id: '2', title: 'Title 2', description: 'event 2', startDate: new Date()},
-      {id: '3', title: 'Title 3', description: 'event 3', startDate: new Date()},
-    ]
+  events!: Event[]
+
+  constructor(private eventService: EventsService, private messageService: MessageService) {}
 
   ngOnInit() {
-    //call API pour récupérer les tournois
+    this.getEvents()
+  }
+
+  getEvents() {
+    this.eventService.getEvents().subscribe({
+      next: (res) => {
+        this.events = res
+      },
+      error: (error) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Une erreur est survenue lors de la récupération des évènements',
+          detail: error
+        })
+      }
+    })
   }
 
   onRowEditInit(event: Event) {
-    this.clonedTournament[event.id] = { ...event };
+    this.clonedTournament[event._id as string] = { ...event };
   }
 
   onRowEditSave(event: Event) {
-    console.log(event)
-    //Call API pour modifier le tournoi
+    this.eventService.editEvent(event._id as string, event).subscribe({
+      next: () => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'L\'évènement a bien été modifié'
+        })
+      },
+      error: (error) => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Une erreur est survenue lors de la modification de l\'évènement',
+          detail: error,
+        })
+      }
+    })
   }
 
   onRowEditCancel(event: Event, index: number) {
-    delete this.clonedTournament[event.id];
+    delete this.clonedTournament[event._id as string];
   }
 
   onRowDelete(event: Event) {
-    //call api pour supprimer un event
+    this.eventService.deleteEvent(event._id as string).subscribe({
+      next: () => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'L\'évènement a bien été supprimé'
+        })
+      },
+      error: (error) => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Une erreur est survenue lors de la suppression de l\'évènement',
+          detail: error,
+        })
+      },
+      complete: () => {
+        this.getEvents()
+      }
+    })
   }
 }
