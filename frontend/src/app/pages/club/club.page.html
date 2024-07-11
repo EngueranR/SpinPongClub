@@ -1,12 +1,62 @@
-<div *ngFor="let n of news;" class="m-3">
-  <p-card [header]="n.title">
-    <div>
-      {{n.content}}
-    </div>
-    <ng-template pTemplate="footer">
-      <div class="flex justify-content-end">
-      Créé le {{ n.createdAt | date:'dd/MM/yyyy' }}
+<p-card *ngIf="isAdmin">
+  <ng-template pTemplate="header">
+    <h3>Ajouter une News</h3>
+  </ng-template>
+  <ng-template pTemplate="content">
+    <div class="add-news-form column">
+      <div class="form-group">
+        <textarea
+          pInputText
+          [(ngModel)]="newNews.title"
+          placeholder="Titre"
+          id="title"
+          class="input-text"
+        ></textarea>
       </div>
+      <div class="form-group">
+        <textarea
+          pInputTextarea
+          [(ngModel)]="newNews.content"
+          placeholder="Contenu"
+          class="input-textarea"
+          id="contenu"
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <p-button
+          (onClick)="addNews()"
+          label="Envoyer"
+          class="submit-button"
+        ></p-button>
+      </div>
+    </div>
+  </ng-template>
+</p-card>
+<div *ngIf="news.length; else noNewsTemplate">
+  <div *ngFor="let n of news;" class="m-3">
+    <p-card [header]="n.title">
+      <div>{{ n.content }}</div>
+      <ng-template pTemplate="footer">
+        <div class="flex justify-content-between">
+          <div>Créé le {{ n.createdAt | date:'dd/MM/yyyy' }}</div>
+          <p-button
+            *ngIf="isAdmin"
+            (onClick)="deleteNews(n._id)"
+            label="✖"
+            styleClass="delete-button-custom"
+          ></p-button>
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
+</div>
+<ng-template #noNewsTemplate>
+  <p-card>
+    <ng-template pTemplate="header">
+      <h3>Information</h3>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <div>Aucune news n'est actuellement disponible.</div>
     </ng-template>
   </p-card>
-</div>
+</ng-template>

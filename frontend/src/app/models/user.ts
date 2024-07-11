@@ -3,21 +3,21 @@ export class User {
   email: string;
   password?: string;
   token?: string;
-  firstName: string;
-  lastName: string;
+  firstname: string;
+  lastname: string;
   isAdmin: boolean = false;
 
   constructor(
     username: string = '',
     email: string = '',
     password?: string,
-    firstName: string = '',
-    lastName: string = ''
+    firstname: string = '',
+    lastname: string = ''
   ) {
     this.username = username;
     this.email = email;
     this.password = password;
-    this.firstName = firstName;
-    this.lastName = lastName;
+    this.firstname = firstname;
+    this.lastname = lastname;
   }
 }

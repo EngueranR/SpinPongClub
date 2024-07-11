@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { User } from '../models/user';
 import { HttpClient } from '@angular/common/http';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root',
@@ -21,10 +21,16 @@ export class AuthService {
     return this.loggedIn.asObservable();
   }
 
+  isAdmin(): boolean {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    return user.isAdmin;
+  }
+
   register(user: User): Observable<User> {
     return this.http.post<User>(`${this.baseUrl}/register`, user).pipe(
       tap((user) => {
         localStorage.setItem('token', user.token!);
+        localStorage.setItem('user', JSON.stringify(user));
         this.loggedIn.next(true);
       })
     );
@@ -36,6 +42,7 @@ export class AuthService {
       .pipe(
         tap((user) => {
           localStorage.setItem('token', user.token!);
+          localStorage.setItem('user', JSON.stringify(user));
           this.loggedIn.next(true);
         })
       );
@@ -43,6 +50,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     this.loggedIn.next(false);
   }
 }
